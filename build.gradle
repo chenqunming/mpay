@@ -1,0 +1,62 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+        maven {
+            credentials {
+                username '6151775589e1d5005ae61b56'
+                password '3heRtMDkeJF['
+            }
+            url 'https://packages.aliyun.com/maven/repository/2142340-release-6BHyRi/'
+        }
+        maven {
+            credentials {
+                username '6151775589e1d5005ae61b56'
+                password '3heRtMDkeJF['
+            }
+            url 'https://packages.aliyun.com/maven/repository/2142340-snapshot-hhhEC3/'
+        }
+
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.2.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+        maven {
+            credentials {
+                username '6151775589e1d5005ae61b56'
+                password '3heRtMDkeJF['
+            }
+            url 'https://packages.aliyun.com/maven/repository/2142340-release-6BHyRi/'
+        }
+        maven {
+            credentials {
+                username '6151775589e1d5005ae61b56'
+                password '3heRtMDkeJF['
+            }
+            url 'https://packages.aliyun.com/maven/repository/2142340-snapshot-hhhEC3/'
+        }
+    }
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
