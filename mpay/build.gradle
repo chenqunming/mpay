@@ -20,8 +20,8 @@ uploadArchives {
                 )
             }
             pom.version = '1.0.0'
-            pom.artifactId = 'com.codeqm'
-            pom.groupId = 'mpay'
+            pom.artifactId = 'mpay'
+            pom.groupId = 'com.codeqm'
         }
     }
 }
