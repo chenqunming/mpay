@@ -14,3 +14,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+gralde.properties
+/maven-publish.gradle
+/publish-mavencentral.gradle
