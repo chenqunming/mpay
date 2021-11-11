@@ -3,10 +3,9 @@ package com.codeqm.myapplication
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.codeqm.mpay.ALI_PAY
-import com.codeqm.mpay.MPay
-import com.codeqm.mpay.PayListener
-import com.codeqm.mpay.WX_PAY
+import com.codeqm.mpay.PayFactory
+import com.codeqm.mpay.TYPE_WX_PAY
+import com.codeqm.mpay.listener.PayListener
 
 const val TAG = "MainActivity"
 
@@ -18,7 +17,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        MPay.pay(this, ALI_PAY, "", object : PayListener {
+
+        PayFactory(this).payAction(TYPE_WX_PAY, "",object : PayListener{
             override fun onPayStart(result: String) {
                 Log.d(TAG, "onPayStart showLoading")
             }
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "onPayComplete hideLoading")
             }
 
-        });
+        })
 
 
     }

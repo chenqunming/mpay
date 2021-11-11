@@ -24,14 +24,22 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.1"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20"
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20'
 
+
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.13.0' // NEW
+        classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.4.10.2' // NEW
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 allprojects {
     repositories {
+        // 支付宝 SDK AAR 包所需的配置
+        flatDir {
+            dirs 'libs'
+        }
+
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon

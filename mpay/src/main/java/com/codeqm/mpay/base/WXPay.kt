@@ -1,9 +1,10 @@
-package com.codeqm.mpay
+package com.codeqm.mpay.base
 
 import android.app.Activity
 import android.content.Context
 import android.text.TextUtils
 import android.util.Log
+import com.codeqm.mpay.listener.*
 import com.tencent.mm.opensdk.constants.Build
 import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.IWXAPI
@@ -45,57 +46,10 @@ class WXPay private constructor() {
         return register
     }
 
-    fun toWxPay(activity: Activity, payParameters: String, listener: PayListener): Boolean  {
-        var param: JSONObject? = null
-        param = try {
-            JSONObject(payParameters)
-        } catch (e: JSONException) {
-            e.printStackTrace()
-            Log.d(TAG, "微信支付 参数JSON解析错误：" + e.message)
-            listener.onPayError(PARAMETERS_ERROR, "参数异常")
-            return false
-        }
-        return wxPay(
-            activity,
-            param?.optString("appid"),
-            param?.optString("partnerid"),
-            param?.optString("prepay_id"),
-            param?.optString("noncestr"),
-            param?.optString("timestamp"),
-            param?.optString("sign"),
-            listener
-        )
-    }
-
-    /**
-     * 调起支付
-     *
-     * @param appId     应用ID
-     * @param partnerId 商户ID
-     * @param prepayId  预付订单
-     * @param nonceStr  随机字符串
-     * @param timeStamp 时间戳
-     * @param sign      签名
-     */
-    fun wxPay(
-        activity: Activity, appId: String?, partnerId: String?, prepayId: String?,
-        nonceStr: String?, timeStamp: String?, sign: String?, listener: PayListener
-    ): Boolean {
-        if (TextUtils.isEmpty(appId) || TextUtils.isEmpty(partnerId)
-            || TextUtils.isEmpty(prepayId) || TextUtils.isEmpty(
-                nonceStr
-            )
-            || TextUtils.isEmpty(timeStamp) || TextUtils.isEmpty(
-                sign
-            )
-        ) {
-            Log.d(TAG, "微信支付 缺少参数或参数为空")
-            listener.onPayError(PARAMETERS_ERROR, "参数异常")
-            return false
-        }
+    fun toPay(activity: Activity, request: PayReq, listener: PayListener): Boolean {
 
         if (wXApi == null) {
-            init(activity, appId)
+            init(activity, request.appId)
         }
         if (!wXApi!!.isWXAppInstalled) {
             Log.d(TAG, "微信支付 未安装微信")
@@ -108,25 +62,11 @@ class WXPay private constructor() {
             return false
         }
 
-        val request = PayReq()
-        request.appId = appId
-        request.partnerId = partnerId
-        request.prepayId = prepayId
-        request.packageValue = "Sign=WXPay"
-        request.nonceStr = nonceStr
-        request.timeStamp = timeStamp
-        request.sign = sign
-        return wxPay(request, listener)
 
-    }
-
-    fun wxPay(request: PayReq, listener: PayListener): Boolean {
         listenerRef = WeakReference(listener)
         val startTime = System.currentTimeMillis()
         Log.d(TAG, "微信支付 startTime=$startTime")
         val result = wXApi!!.sendReq(request)
-        Log.d(TAG, "微信支付 endTime=" + System.currentTimeMillis())
-        Log.d(TAG, "微信支付 totalTime=" + (System.currentTimeMillis() - startTime))
         Log.d(TAG, "微信支付 sendReq=$result")
         if (result) {
             listener.onPayStart("success")

@@ -50,7 +50,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-beta01"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-beta01"
 
-    implementation "com.codeqm:mpay:1.0.0"
+//    implementation project(path: ':mpay')
+    implementation "io.github.chenqunming:mpay:1.0.1"
 
 
 }

@@ -1,9 +1,10 @@
-package com.codeqm.mpay
+package com.codeqm.mpay.wx
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import com.codeqm.mpay.base.WXPay
 import com.tencent.mm.opensdk.constants.ConstantsAPI
 import com.tencent.mm.opensdk.modelbase.BaseReq
 import com.tencent.mm.opensdk.modelbase.BaseResp

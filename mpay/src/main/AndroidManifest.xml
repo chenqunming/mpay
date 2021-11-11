@@ -9,7 +9,7 @@
 
 
     <application>
-        <activity android:name="com.codeqm.mpay.WXPayEntryActivity" />
+        <activity android:name="com.codeqm.mpay.wx.WXPayEntryActivity" />
     </application>
 
 </manifest>

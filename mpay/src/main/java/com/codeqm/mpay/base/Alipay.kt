@@ -1,8 +1,10 @@
-package com.codeqm.mpay
+package com.codeqm.mpay.base
 
 import android.app.Activity
 import android.util.Log
 import com.alipay.sdk.app.PayTask
+import com.codeqm.mpay.listener.PAY_ERROR
+import com.codeqm.mpay.listener.PayListener
 import java.lang.ref.WeakReference
 
 class Alipay private constructor() {
@@ -19,7 +21,7 @@ class Alipay private constructor() {
     private var activityRef: WeakReference<Activity>? = null
 
 
-    fun toAliPay(activity: Activity, orderInfo: String, listener: PayListener) {
+    fun toPay(activity: Activity, orderInfo: String, listener: PayListener) {
         listenerRef = WeakReference<PayListener>(listener)
         activityRef = WeakReference<Activity>(activity)
         Thread(PayRunnable(orderInfo)).start()
@@ -29,10 +31,10 @@ class Alipay private constructor() {
     class PayRunnable(private val orderInfo: String) : Runnable {
         override fun run() {
             instance.activityRef?.let { ref ->
-                ref.get()?.let {
-                    val alipay = PayTask(it)
+                ref.get()?.let { activity ->
+                    val alipay = PayTask(activity)
                     val result = alipay.payV2(orderInfo, true)
-                    it.runOnUiThread {
+                    activity.runOnUiThread {
                         instance.payBackResult(result)
                     }
                 }

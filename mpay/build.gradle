@@ -3,30 +3,6 @@ plugins {
     id 'kotlin-android'
 }
 
-apply plugin: 'maven'
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: 'https://packages.aliyun.com/maven/repository/2142340-release-6BHyRi/') {
-                authentication(
-                        userName: '6151775589e1d5005ae61b56',
-                        password: '3heRtMDkeJF['
-                )
-            }
-            snapshotRepository(url: 'https://packages.aliyun.com/maven/repository/2142340-snapshot-hhhEC3/') {
-                authentication(
-                        userName: '6151775589e1d5005ae61b56',
-                        password: '3heRtMDkeJF['
-                )
-            }
-            pom.version = '1.0.0'
-            pom.artifactId = 'mpay'
-            pom.groupId = 'com.codeqm'
-        }
-    }
-}
-
-
 
 android {
     compileSdk 31
@@ -64,10 +40,24 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
-    implementation 'com.codeqm.sdk:alipay:15.8.03'
+    implementation "io.github.chenqunming:alipaysdk:15.8.05"
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0'
 }
 
 
+//ext {
+//    artifact = 'mpay'
+//    libraryName = '集成支付'
+//    libraryDescription = '集成微信支付和支付宝支付'
+//    libraryVersion = '1.0.0'
+//}
+//
+//apply from: '../maven-publish.gradle'
+
+ext {
+    PUBLISH_GROUP_ID = "io.github.chenqunming"        //项目包名
+    PUBLISH_ARTIFACT_ID = "mpay"            //项目名
+    PUBLISH_VERSION = "1.0.1"                    //版本号
+}
+apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"
 
