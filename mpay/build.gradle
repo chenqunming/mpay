@@ -54,10 +54,10 @@ dependencies {
 //
 //apply from: '../maven-publish.gradle'
 
-ext {
-    PUBLISH_GROUP_ID = "io.github.chenqunming"        //项目包名
-    PUBLISH_ARTIFACT_ID = "mpay"            //项目名
-    PUBLISH_VERSION = "1.0.1"                    //版本号
-}
-apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"
+//ext {
+//    PUBLISH_GROUP_ID = "io.github.chenqunming"        //项目包名
+//    PUBLISH_ARTIFACT_ID = "mpay"            //项目名
+//    PUBLISH_VERSION = "1.0.1"                    //版本号
+//}
+//apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"
 

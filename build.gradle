@@ -6,20 +6,7 @@ buildscript {
         maven {
             url 'https://maven.aliyun.com/repository/public'
         }
-        maven {
-            credentials {
-                username '6151775589e1d5005ae61b56'
-                password '3heRtMDkeJF['
-            }
-            url 'https://packages.aliyun.com/maven/repository/2142340-release-6BHyRi/'
-        }
-        maven {
-            credentials {
-                username '6151775589e1d5005ae61b56'
-                password '3heRtMDkeJF['
-            }
-            url 'https://packages.aliyun.com/maven/repository/2142340-snapshot-hhhEC3/'
-        }
+
 
     }
     dependencies {
@@ -46,20 +33,6 @@ allprojects {
 
         maven {
             url 'https://maven.aliyun.com/repository/public'
-        }
-        maven {
-            credentials {
-                username '6151775589e1d5005ae61b56'
-                password '3heRtMDkeJF['
-            }
-            url 'https://packages.aliyun.com/maven/repository/2142340-release-6BHyRi/'
-        }
-        maven {
-            credentials {
-                username '6151775589e1d5005ae61b56'
-                password '3heRtMDkeJF['
-            }
-            url 'https://packages.aliyun.com/maven/repository/2142340-snapshot-hhhEC3/'
         }
     }
 }
