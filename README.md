@@ -4,6 +4,11 @@
 
 工厂模式+策略模式
 
+
+依赖集成
+
+implementation "io.github.chenqunming:mpay:1.0.1"
+
 ```
 
 PayFactory(this).payAction(TYPE_WX_PAY, "",object : PayListener{
